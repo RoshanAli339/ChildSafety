@@ -1,0 +1,22 @@
+version: '3' # docker version
+services:
+  www:
+    image: php:apache
+    volumes:
+      - "./:/var/www/html" # sync project dir with web container dir
+    ports:
+      - 80:80
+      - 443:443
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=SourceKode
+      - MYSQL_ROOT_PASSWORD=sourcekode
+      - MYSQL_ALLOW_EMPTY_PASSOWRD=1
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
