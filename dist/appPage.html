@@ -20,9 +20,9 @@
                         flex-col gap-6 items-end py-2 text-lg font-bold font-Poppins
                         lg:static lg:flex-row lg:justify-end lg:gap-8">
                 <ul class="flex flex-col items-end gap-6 lg:flex-row max-lg:w-2/6">
-                    <li class="hover:text-orange-400">Dashboard</li>
-                    <li class="hover:text-orange-400">History</l>
-                    <li class="hover:text-orange-400">Attendance</li>
+                    <li class="hover:text-orange-400"><a href="#">Dashboard</a></li>
+                    <li class="hover:text-orange-400"><a href="#">History</a></l>
+                    <li class="hover:text-orange-400"><a href="#">Attendance</a></li>
                 </ul>
 
                 <div class="flex flex-col items-center gap-6">
@@ -35,6 +35,11 @@
         </nav>
     </header>
 
+    <div class="w-screen flex flex-col justify-center h-screen items-center" data-nosnippet>
+        <h3 class="font-Comfortaa text-2xl ">Your child's live location: </h3>
+        <div id="map" class="w-4/5 h-[500px] rounded-lg"></div>
+    </div>
+
     <script>
         const toggle = document.querySelector('.toggle-button')
         const dropDown = document.querySelector('.drop-menu')
@@ -43,6 +48,31 @@
             dropDown.classList.toggle('-top-full');
             dropDown.classList.toggle('top-16');
         })
+
+        function initMap() {
+            const latlong = {
+                lat: 16.257984302951154,
+                lng: 80.32611610529236
+            }
+            var options = {
+                zoom: 18,
+                center: latlong
+            }
+        
+            var map = new google.maps.Map(document.getElementById('map'), options)
+        
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: 16.257984302951154,
+                    lng: 80.32611610529236
+                },
+                map: map,
+                icon: './child.svg'
+            })
+        }
     </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqHW3QmMMYPOP6uR5MMFvQQoIB3OkdhnE&callback=initMap"></script>
+
 </body>
 </html>
