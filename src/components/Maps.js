@@ -9,7 +9,6 @@ const containerStyle = {
 }
 
 export default function Maps(){
-    console.log(process.env.REACT_APP_API_TOKEN)
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_API_TOKEN
     });
@@ -39,7 +38,7 @@ export default function Maps(){
                 zoom={16}
                 onLoad={onMapLoad}
             >
-                <MarkerF position={position} icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png" />
+                <MarkerF position={position} icon="https://maps.google.com/mapfiles/ms/icons/green-dot.png" />
             </GoogleMap>
         </div>
     )
