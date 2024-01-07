@@ -4,14 +4,15 @@ import Attendance from "./components/Attendance";
 import Dashboard from "./components/Dashboard";
 import './App.css';
 import {Route, Routes} from "react-router-dom";
+import Protected from "./components/Protected";
 
 function App() {
   return (
       <Routes>
         <Route path="/" element={<div className="LoginApp"> <Login/> </div>} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/attendance" element={<Attendance />}/>
+        <Route path="/dashboard" element={<Protected Component={Dashboard} />} />
+        <Route path="/history" element={<Protected Component={History} />} />
+        <Route path="/attendance" element={<Protected  Component={Attendance} />}/>
       </Routes>
   );
 }

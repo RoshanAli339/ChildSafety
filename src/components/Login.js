@@ -13,6 +13,7 @@ function Form(){
         e.preventDefault();
         try{
             await submitForm({"email": email, "password": password});
+            localStorage.setItem("login", "true")
             navigate('/dashboard')
         }
         catch (err){
