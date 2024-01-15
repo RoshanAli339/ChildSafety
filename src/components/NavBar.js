@@ -1,14 +1,10 @@
 import './NavBar.css'
 import logo from '../images/protection.png'
 import {Link} from "react-router-dom";
-import {useNavigate} from "react-router-dom";
-export default function NavBar(){
-    const navigator = useNavigate();
-    function handleLogOut(){
-        localStorage.setItem("login", "false");
-        navigator('/');
-    }
+import {useFirebase} from "../context/Firebase";
 
+export default function NavBar(){
+    const firebase = useFirebase();
     return(
         <nav>
             <img src={logo} alt="Image"/>
@@ -17,7 +13,7 @@ export default function NavBar(){
                 <Link className="link" to="/history">History</Link>
                 <Link className="link" to="/attendance">Attendance</Link>
             </ul>
-            <button id="logout" onClick={handleLogOut}>
+            <button id="logout" onClick={()=>firebase.logOut()}>
                 Log out
             </button>
         </nav>

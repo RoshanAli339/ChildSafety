@@ -11,12 +11,14 @@ const contentStyle = {
     fontFamily: "Poppins, sans-serif",
 }
 
-export default function Dashboard(){
+
+export default function Dashboard({username}){
     return(
         <>
             <NavBar/>
             <div id="content" style={contentStyle}>
-                <h1>Live Location:</h1>
+                <h1>Welcome {username}</h1>
+                <h1>Your childs live Location:</h1>
                 <Maps/>
             </div>
         </>

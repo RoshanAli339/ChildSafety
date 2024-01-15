@@ -1,9 +1,12 @@
 import './login.css'
-import {users} from '../data/users'
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useFirebase} from "../context/Firebase";
+
 
 function Form(){
+
+    const firebase = useFirebase();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,14 +14,14 @@ function Form(){
     const navigate = useNavigate();
     async function handleSubmit(e){
         e.preventDefault();
-        try{
-            await submitForm({"email": email, "password": password});
-            localStorage.setItem("login", "true")
-            navigate('/dashboard')
-        }
-        catch (err){
+        firebase.loginUser(email, password).then(() => {
+                localStorage.setItem("login", true);
+                navigate('/dashboard');
+            }
+        ).catch((e)=> {
+            console.log("Login failed")
             setIsError(true);
-        }
+        });
     }
 
     return(
@@ -49,19 +52,6 @@ function Form(){
     )
 }
 
-function submitForm(credentials){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            let check = users.find(x =>
-                x.email===credentials.email && x.password===credentials.password)
-            if (check === undefined){
-                reject(new Error("Invalid username or password! Please try again!"));
-            } else{
-                resolve();
-            }
-        }, 1500);
-    })
-}
 
 
 export default function Login(){
