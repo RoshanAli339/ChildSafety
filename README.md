@@ -1,1 +1,1 @@
-# This project is deployed in [Vercel](https://child-safet.vercel.app).
+# This project is deployed in [Vercel](https://child-safety.vercel.app).
